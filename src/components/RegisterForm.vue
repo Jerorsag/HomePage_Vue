@@ -1,113 +1,101 @@
 <template>
-    <div class="container-form">
-      <form class="form" @submit.prevent="handleForm">
-        <h1 class="form-title">Registro de Parqueadero</h1>
-  
-        <label class="info-inputField">Nombre del Parqueadero</label>
+  <div class="container-form">
+    <form class="form" @submit.prevent="handleForm">
+      <h1 class="form-title">Registro de Parqueadero</h1>
+
+      <label class="info-inputField">Nombre del Parqueadero</label>
+      <InputField
+        :icon="icons.pencil"
+        type="text"
+        name="namePark"
+        v-model="values.namePark"
+        placeholder="Ej: Parqueadero San Martin"
+        required
+      />
+
+      <label class="info-inputField">Tarifas</label>
+      <div class="inputField-double-container">
         <InputField
-          :icon="icons.pencil"
-          type="text"
-          name="namePark"
-          v-model="values.namePark"
-          placeholder="Ej: Parqueadero San Martin"
+          :icon="icons.money"
+          type="number"
+          name="tarifaCarro"
+          v-model="values.tarifaCarro"
+          placeholder="Carro / h"
           required
         />
-  
-        <label class="info-inputField">Tarifas</label>
-        <div class="inputField-double-container">
-          <InputField
-            :icon="icons.money"
-            type="number"
-            name="tarifaCarro"
-            v-model="values.tarifaCarro"
-            placeholder="Carro / h"
-            required
-          />
-          <InputField
-            :icon="icons.money"
-            type="number"
-            name="tarifaMoto"
-            v-model="values.tarifaMoto"
-            placeholder="Moto / h"
-            required
-          />
-        </div>
-  
-        <label class="info-inputField">Capacidad</label>
-        <div class="inputField-double-container">
-          <InputField
-            :icon="icons.car"
-            type="number"
-            name="cantidadCarros"
-            v-model="values.cantidadCarros"
-            placeholder="Carros"
-            required
-          />
-          <InputField
-            :icon="icons.motorcycle"
-            type="number"
-            name="cantidadMotos"
-            v-model="values.cantidadMotos"
-            placeholder="Motos"
-            required
-          />
-        </div>
-  
-        <label class="info-inputField">¿Algún otro servicio que ofrecer?</label>
         <InputField
-          :icon="icons.gift"
-          type="text"
-          name="servicio"
-          v-model="values.servicio"
-          placeholder="Ej: Lavado de Autos"
+          :icon="icons.money"
+          type="number"
+          name="tarifaMoto"
+          v-model="values.tarifaMoto"
+          placeholder="Moto / h"
+          required
         />
-  
-        <button type="submit" class="form-btn">Guardar</button>
-      </form>
-    </div>
-  </template>
-  
-  <script>
-  import { defineComponent, reactive } from "vue";
-  import InputField from "./InputField.vue";
-  import { FaPencilAlt, FaMoneyCheckAlt, FaCar, FaMotorcycle, FaGift } from "oh-vue-icons/icons";
-  
-  export default defineComponent({
-    name: "RegisterForm",
-    components: {
-      InputField,
-    },
-    setup() {
-      // Estado reactivo para los valores del formulario
-      const values = reactive({
-        namePark: "",
-        tarifaCarro: "",
-        tarifaMoto: "",
-        cantidadCarros: "",
-        cantidadMotos: "",
-        servicio: "",
-      });
-  
-      const icons = {
-        pencil: FaPencilAlt,
-        money: FaMoneyCheckAlt,
-        car: FaCar,
-        motorcycle: FaMotorcycle,
-        gift: FaGift,
-      };
-  
-      const handleForm = () => {
-        console.log(values);
-      };
-  
-      return {
-        values,
-        icons,
-        handleForm,
-      };
-    },
-  });
-  </script>
+      </div>
+
+      <label class="info-inputField">Capacidad</label>
+      <div class="inputField-double-container">
+        <InputField
+          :icon="icons.car"
+          type="number"
+          name="cantidadCarros"
+          v-model="values.cantidadCarros"
+          placeholder="Carros"
+          required
+        />
+        <InputField
+          :icon="icons.motorcycle"
+          type="number"
+          name="cantidadMotos"
+          v-model="values.cantidadMotos"
+          placeholder="Motos"
+          required
+        />
+      </div>
+
+      <button type="submit" class="form-btn">Guardar</button>
+    </form>
+  </div>
+</template>
+
+<script>
+import { defineComponent, reactive } from "vue";
+import InputField from "./InputField.vue";
+import { FaPencilAlt, FaMoneyCheckAlt, FaCar, FaMotorcycle, FaGift } from "oh-vue-icons/icons";
+
+export default defineComponent({
+  name: "RegisterForm",
+  components: { InputField },
+  setup() {
+    // Estado reactivo para los datos del formulario
+    const values = reactive({
+      namePark: "",
+      tarifaCarro: "",
+      tarifaMoto: "",
+      cantidadCarros: "",
+      cantidadMotos: ""
+    });
+
+    const icons = {
+      pencil: FaPencilAlt,
+      money: FaMoneyCheckAlt,
+      car: FaCar,
+      motorcycle: FaMotorcycle,
+      gift: FaGift,
+    };
+
+    const handleForm = () => {
+      console.log(values);
+    };
+
+    return {
+      values,
+      icons,
+      handleForm,
+    };
+  },
+});
+</script>
   
   <style scoped>
   /* Mantén tus estilos originales aquí */

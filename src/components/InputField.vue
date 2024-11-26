@@ -9,9 +9,9 @@
         class="inputField"
         :type="type"
         :name="name"
-        :value="value"
+        :value="modelValue"
         :placeholder="placeholder"
-        @input="$emit('update:value', $event.target.value)"
+        @input="$emit('update:modelValue', $event.target.value)"
         :required="required"
       />
     </div>
@@ -35,7 +35,7 @@
         type: String,
         required: false,
       },
-      value: {
+      modelValue: {
         type: String,
         default: "", // Valor inicial vacío
       },
@@ -48,7 +48,7 @@
         default: false, // No requerido por defecto
       },
     },
-    emits: ["update:value"],
+    emits: ["update:modelValue"],
   });
   </script>
   
